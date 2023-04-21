@@ -1,9 +1,14 @@
-name: IWRT-Rockchip  #CI项目名
+name: Quake-IWRT-Rockchip  #CI项目名
+
 
 on:
-  schedule:  #自动编译：每天早上6点
-    - cron: 0 22 * * *
-  workflow_dispatch:  #手动编译
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
 
 env:
   OWRT_TARGET: Rockchip  #项目平台
@@ -75,6 +80,14 @@ jobs:
           $GITHUB_WORKSPACE/Scripts/Extras.sh
 
           make defconfig
+          
+      - name: SSH connection to Actions
+       
+        uses: P3TERX/ssh2actions@v1.0.0
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
       - name: Cleanup Toolchain
         run: |
@@ -87,7 +100,7 @@ jobs:
           cd ./owrt
 
           make download -j$(nproc)
-
+             
       - name: Compile Firmware
         run: |
           cd ./owrt
