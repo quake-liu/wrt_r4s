@@ -1,8 +1,6 @@
 name: LWRT-X86  #CI项目名
 
 on:
-  schedule:  #自动编译：每天早上3点
-    - cron: 0 19 * * *
   workflow_dispatch:  #手动编译
 
 env:
