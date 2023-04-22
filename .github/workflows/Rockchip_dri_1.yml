@@ -1,4 +1,4 @@
-name: Quake-IWRT-Rockchip  #CI项目名
+name: Quake-IWRT-Rockchip_1  #CI项目名
 
 on:
   schedule:  #自动编译：每天早上6点
