@@ -70,26 +70,24 @@ jobs:
           cd ./package
           $GITHUB_WORKSPACE/Scripts/Plugins.sh
       
-      - name: SSH connection to Actions
-       
-         cd ./owrt
-
-          rm -rf ./tmp && rm -rf ./.config*
-       
-        uses: P3TERX/ssh2actions@v1.0.0
-        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-        env:
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
       - name: Custom Settings
-        run: |
+        run: |       
+          cd ./owrt
+          rm -rf ./tmp && rm -rf ./.config*        
           cat $GITHUB_WORKSPACE/Config/$OWRT_TARGET.txt $GITHUB_WORKSPACE/Config/General.txt >> .config
 
           $GITHUB_WORKSPACE/Scripts/Extras.sh
 
           make defconfig
           
+      - name: SSH connection to Actions
+      
+        uses: P3TERX/ssh2actions@v1.0.0
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
       - name: Cleanup Toolchain
         run: |
