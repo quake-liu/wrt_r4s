@@ -124,8 +124,7 @@ jobs:
           tag_name: ${{env.OWRT_TARGET}}_${{env.OWRT_NAME}}_${{env.OWRT_DATE}}
           files: ./owrt/upload/*.*
           body: |
-            这是个平台固件包，内含多个设备！
-            请注意选择你需要的设备固件！
+            这是个ARM平台固件包!
             设备：${{env.OWRT_TYPE}}
             地址：${{env.OWRT_IP}}
             密码：无
