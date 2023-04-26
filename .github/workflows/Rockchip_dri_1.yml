@@ -71,7 +71,6 @@ jobs:
           cd ./owrt
           rm -rf ./tmp && rm -rf ./.config*        
           cat $GITHUB_WORKSPACE/Config/$OWRT_TARGET.txt $GITHUB_WORKSPACE/Config/General.txt >> .config
-          sed -i '10s/5.15/5.4/' ./target/linux/rockchip/Makefile
           $GITHUB_WORKSPACE/Scripts/Extras.sh
 
           make defconfig
