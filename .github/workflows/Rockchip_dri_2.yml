@@ -87,6 +87,9 @@ jobs:
           cd ./owrt
 
           make download -j$(nproc)
+          
+          echo "======================="
+          df -h
              
       - name: Compile Firmware
         run: |
