@@ -71,6 +71,7 @@ jobs:
           cd ./owrt
           rm -rf ./tmp && rm -rf ./.config*        
           cat $GITHUB_WORKSPACE/Config/$OWRT_TARGET.txt $GITHUB_WORKSPACE/Config/General.txt >> .config
+          sed -i '10s/5.15/5.4/' ./target/linux/rockchip/Makefile
           $GITHUB_WORKSPACE/Scripts/Extras.sh
 
           make defconfig
@@ -127,7 +128,7 @@ jobs:
             这是个ARM平台固件包!
             设备：${{env.OWRT_TYPE}}
             地址：${{env.OWRT_IP}}
-            密码：password
+            密码：无
 
       - name: Delete Old Releases
         uses: dev-drprasad/delete-older-releases@master
