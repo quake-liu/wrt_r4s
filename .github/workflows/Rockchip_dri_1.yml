@@ -10,8 +10,8 @@ env:
   OWRT_THEME: argon  #默认主题
   OWRT_NAME: IWRT  #默认主机名
   OWRT_IP: 192.168.2.1  #默认IP地址
-  #OWRT_URL: https://github.com/immortalwrt/immortalwrt.git
-  OWRT_URL: https://github.com/coolsnowwolf/lede.git
+  OWRT_URL: https://github.com/immortalwrt/immortalwrt.git
+  #OWRT_URL: https://github.com/coolsnowwolf/lede.git
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 permissions: write-all
