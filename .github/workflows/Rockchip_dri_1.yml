@@ -49,7 +49,7 @@ jobs:
 
       - name: Clone OWRT Code
         run: |
-          git clone --depth=1 --single-branch $OWRT_URL ./owrt
+          git clone -b openwrt-21.02 $OWRT_URL ./owrt
 
       - name: Update Feeds
         run: |
