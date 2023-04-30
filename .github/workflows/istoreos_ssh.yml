@@ -53,7 +53,7 @@ jobs:
 
       - name: Clone OWRT Code
         run: |
-          git clone --depth=1 --single-branch $OWRT_URL ./owrt
+          git clone -b istoreos-21.02.1 https://github.con/istoreos/istoreos.git ./owrt
 
       - name: Update Feeds
         run: |
