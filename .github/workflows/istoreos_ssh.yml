@@ -1,4 +1,4 @@
-name: istoreos_ssh.  #CI项目名
+name: istoreos_ssh  #CI项目名
 
 
 on:
