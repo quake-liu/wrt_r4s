@@ -1,4 +1,4 @@
-name: Quake-IWRT-Rockchip_2  #CI项目名
+name: Quake-IWRT-Rockchip_1  #CI项目名
 
 on:
   #schedule:  #自动编译：每天早上4点
@@ -10,8 +10,8 @@ env:
   OWRT_THEME: argon  #默认主题
   OWRT_NAME: IWRT  #默认主机名
   OWRT_IP: 192.168.2.1  #默认IP地址
-  OWRT_URL: https://github.com/immortalwrt/immortalwrt.git
-  #OWRT_URL: https://github.com/coolsnowwolf/lede.git
+  #OWRT_URL: https://github.com/immortalwrt/immortalwrt.git
+  OWRT_URL: https://github.com/coolsnowwolf/lede.git
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 permissions: write-all
@@ -50,7 +50,6 @@ jobs:
       - name: Clone OWRT Code
         run: |
           git clone --depth=1 --single-branch $OWRT_URL ./owrt
-
       - name: Update Feeds
         run: |
           cd ./owrt
@@ -71,7 +70,6 @@ jobs:
           cd ./owrt
           rm -rf ./tmp && rm -rf ./.config*        
           cat $GITHUB_WORKSPACE/Config/$OWRT_TARGET.txt $GITHUB_WORKSPACE/Config/General.txt >> .config
-          sed -i '10s/5.15/5.4/' ./target/linux/rockchip/Makefile
           $GITHUB_WORKSPACE/Scripts/Extras.sh
 
           make defconfig
@@ -87,9 +85,6 @@ jobs:
           cd ./owrt
 
           make download -j$(nproc)
-          
-          echo "======================="
-          df -h
              
       - name: Compile Firmware
         run: |
@@ -131,7 +126,7 @@ jobs:
             这是个ARM平台固件包!
             设备：${{env.OWRT_TYPE}}
             地址：${{env.OWRT_IP}}
-            密码：无
+            密码：password
 
       - name: Delete Old Releases
         uses: dev-drprasad/delete-older-releases@master
