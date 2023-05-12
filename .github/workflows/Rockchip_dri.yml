@@ -1,4 +1,4 @@
-name: Quake-IWRT-Rockchip  #CI项目名
+name: Rockchip_dri  #CI项目名
 
 
 on:
