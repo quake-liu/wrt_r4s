@@ -104,7 +104,6 @@ CONFIG_PACKAGE_luci-app-diskma=y
 
 ### vsftpd ###
 CONFIG_PACKAGE_luci-app-vsftpd=y
-CONFIG_PACKAGE_vsftpd=y
 
 ### Video Support ###
 CONFIG_PACKAGE_kmod-drm-panfrost=y
